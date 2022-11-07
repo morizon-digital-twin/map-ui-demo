@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Hitzewellenszenario</h5>
+        <p class="category"> Beispielszenario </p>
+       
+        
+      </div>
+      <div class="card-body">
+       
+      <div class="map-container2">
+          <div class="map-frame">
+            <div id="map"></div>
+          </div>
+        </div> 
+
+        <div> 
+
+          <h6 *ngFor="let marker of markers; let i = index"> 
+            {{ myMarkers[i].title }} // 
+            {{  marker.getLatLng().lat  | number:'1.0-2'  }} //
+            {{ marker.getLatLng().lng | number:'1.0-2' }} 
+          </h6>
+        </div>
+
+      
+        
+
+
+      
+      </div>
+      <button *ngIf="hospitalBool" (click) = "clearMarkers(); "> Lösche alle Marker </button> 
+      <button *ngIf="hospitalBool"  (click) = "calculateRoute(); "> Berechne Routen </button>
+   
+    </div>
+    
+  </div>
+</div>

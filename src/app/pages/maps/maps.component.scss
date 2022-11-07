@@ -1,0 +1,31 @@
+
+
+h1 {
+    color: red; 
+}
+
+.card {
+    height: 1000px; 
+}
+
+  .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 400px; 
+    width: 1000px; 
+    margin-top: 50px; 
+    margin: 60px;
+  }
+  
+  .map-frame {
+    border: 2px solid white;
+    height: 100%;
+  }
+  
+  #map {
+    height: 100%;
+    
+  }
