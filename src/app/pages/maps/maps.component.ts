@@ -76,7 +76,7 @@ export class OsmMapComponent implements AfterViewInit {
     
 
 
-    /*this.geojsonLayer.on("click", e => {      
+    this.geojsonLayer.on("click", e => {      
      
       this.map.zoomIn();
 
@@ -85,7 +85,7 @@ export class OsmMapComponent implements AfterViewInit {
 
       
        
-    });*/
+    });
 
 
   }
@@ -107,10 +107,10 @@ export class OsmMapComponent implements AfterViewInit {
     console.log("first" + this.map);
 
   
- /*   this.map.on("click", e => {      
+    this.map.on("click", e => {      
       this.map.zoomIn();
       this.map.panTo([e.latlng.lat, e.latlng.lng]);    
-    });*/
+    });
        
  
   }
