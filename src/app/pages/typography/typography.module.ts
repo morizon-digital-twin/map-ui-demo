@@ -5,8 +5,10 @@ import { TypographyComponent } from './typography.component';
 
 
 
+
 @NgModule({
-    imports: [ RouterModule, CommonModule
+    imports: [ RouterModule, CommonModule,
+   
       ],
 
       declarations: [TypographyComponent],
