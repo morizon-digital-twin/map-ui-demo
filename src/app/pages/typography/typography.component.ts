@@ -45,6 +45,8 @@ export class TypographyComponent implements AfterViewInit {
   hospitalMarker: L.Marker;
   circle: L.Layer;
   distance = [];
+  shapeLayer2: any;
+  shapeLayer3: L.GeoJSON<any>;
 
 
 
@@ -107,8 +109,6 @@ export class TypographyComponent implements AfterViewInit {
 
 
 
-
-
     // this.geojsonLayer.addTo(this.map);
 
     //var shapes = L.layerGroup([this.geojsonLayer, this.geojsonLayer2, this.geojsonLayer3]);
@@ -132,7 +132,7 @@ export class TypographyComponent implements AfterViewInit {
 
     });
 
-    var shapeLayer2 = L.geoJSON(jsonOBJ2, {
+    this.shapeLayer2 = L.geoJSON(jsonOBJ2, {
       style: this.gardenStyle2,
 
       onEachFeature: function popUp(f, l) {
@@ -151,14 +151,20 @@ export class TypographyComponent implements AfterViewInit {
 
     });
 
-    shapeLayer2.on("click", e => {
+    this.shapeLayer2.on("click", e => {
+
+   
       
    
       this.map.zoomIn();
 
+      this.map.removeLayer(this.shapeLayer2); 
+      this.map.addLayer(this.shapeLayer3); 
+      
+
     }); 
 
-    var shapeLayer3 = L.geoJSON(jsonOBJ3, {
+    this.shapeLayer3 = L.geoJSON(jsonOBJ3, {
       style: this.gardenStyle3,
 
       onEachFeature: function popUp(f, l) {
@@ -171,6 +177,12 @@ export class TypographyComponent implements AfterViewInit {
         }
       }
     });
+
+
+   
+
+
+
 
    /* shapeLayer3.on("click", e => {
 
@@ -270,7 +282,7 @@ export class TypographyComponent implements AfterViewInit {
 
     this.map = L.map('map', {
       center: [51.04962, 12.1369], // "Zeitz"
-      zoom: 10,
+      zoom: 9,
       //layers: [ layerMap ]
 
     });
@@ -287,11 +299,12 @@ export class TypographyComponent implements AfterViewInit {
 
 
     var overlayMaps = {
+      "Gemeinden": this.shapeLayer2,
+      "Ortsteile": this.shapeLayer3,
       "none": L.tileLayer(''),
-      // "Zeitz": shapeLayer,
-      "Gemeinden": shapeLayer2,
-      "Ortsteile": shapeLayer3,
     };
+
+    this.map.addLayer(this.shapeLayer2); 
 
     var layerControl = L.control.layers(overlayMaps).addTo(this.map);
 
