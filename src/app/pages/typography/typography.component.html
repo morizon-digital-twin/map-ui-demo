@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="title">Hitzewellenszenario</h5>
+        <h5 class="title">Ärztehaus</h5>
         <p class="category"> Beispielszenario </p>
        
         
@@ -21,23 +21,33 @@
 
         <div class="info-div"> 
 
-          <input type="checkbox"/> Planung
+          
 
-          <h6 *ngFor="let marker of markers; let i = index"> 
+        <!-- <button *ngIf="hospitalBool" (click) = "drawCircle()"> Umkreissuche </button>--> 
+         
+          <button *ngIf="hospitalBool" style="margin-left:10px;"  (click) = "calculateRoute(); "> Berechne Routen </button>
+          <button *ngIf="hospitalBool" style="margin-left:10px;" (click) = "clearMarkers(); "> Lösche alle Marker </button> 
+          <button *ngIf="hospitalBool" style="margin-left:10px;" (click) = "clearLayerOnDrag(); "> Lösche Routen </button> 
+  
+
+          <br>
+          <br> 
+    
+          <h6 *ngFor="let marker of markers; let i = index" > 
             {{ myMarkers[i].title }} // 
             {{  marker.getLatLng().lat  | number:'1.0-4'  }} //
-            {{ marker.getLatLng().lng | number:'1.0-4' }} 
+            {{ marker.getLatLng().lng | number:'1.0-4' }} // 
+            {{ myMarkers[i].distance }} // 
+            {{  myMarkers[i].duration * 1000 | date:'mm:ss' }} (min:ss)
           </h6>
+
         </div>
 
-      <!-- | number:'1.0-2'  -->
-        
 
 
       
       </div>
-      <button *ngIf="hospitalBool" (click) = "clearMarkers(); "> Lösche alle Marker </button> 
-      <button *ngIf="hospitalBool"  (click) = "calculateRoute(); "> Berechne Routen </button>
+     
    
     </div>
     
