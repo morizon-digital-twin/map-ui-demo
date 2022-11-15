@@ -151,6 +151,13 @@ export class TypographyComponent implements AfterViewInit {
 
     });
 
+    shapeLayer2.on("click", e => {
+      
+   
+      this.map.zoomIn();
+
+    }); 
+
     var shapeLayer3 = L.geoJSON(jsonOBJ3, {
       style: this.gardenStyle3,
 
@@ -165,6 +172,86 @@ export class TypographyComponent implements AfterViewInit {
       }
     });
 
+   /* shapeLayer3.on("click", e => {
+
+      if (this.hospitalBool === false) {
+        console.log(e.latlng); // get the coordinates
+
+        var myMarker = {
+          type: "hospital",
+          title: "Ärztehaus",
+          lat: e.latlng.lat,
+          lng: e.latlng.lng,
+          distance: 0,
+          duration: 0
+
+        }
+        this.myMarkers.push(myMarker);
+        this.hospitalMarker = L.marker([e.latlng.lat, e.latlng.lng],
+          {
+            draggable: true,
+            autoPan: true, icon: L.icon({
+              iconSize: [25, 41],
+              iconAnchor: [10, 41],
+              popupAnchor: [2, -40],
+
+              // specify the path here
+              iconUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/layers.png",
+              shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png"
+            })
+          },).bindTooltip("Ärztehaus",
+            {
+              permanent: true,
+              direction: 'right'
+            }).addTo(this.map); // add the marker onclick
+        this.hospitalBool = true;
+        this.markers.push(this.hospitalMarker);
+
+      }
+
+      else {
+
+
+        var title = "Ort " + this.markers.length
+        var myMarker = {
+          type: "location",
+          title: title,
+          lat: e.latlng.lat,
+          lng: e.latlng.lng,
+          distance: 0,
+          duration: 0
+        }
+        this.myMarkers.push(myMarker);
+        var newMarker = L.marker([e.latlng.lat, e.latlng.lng],
+          {
+            draggable: true,
+            autoPan: true, icon: L.icon({
+              iconSize: [25, 41],
+              iconAnchor: [10, 41],
+              popupAnchor: [2, -40],
+              // specify the path here
+              iconUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png",
+              shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png"
+            })
+          },).bindTooltip(title,
+            {
+              permanent: true,
+              direction: 'right'
+            }).addTo(this.map); // add the marker onclick
+
+
+        this.markers.push(newMarker);
+
+    
+
+      }
+
+
+
+      
+
+    }); 
+*/
 
     //var layerMap = L.layerGroup([shapeLayer, shapeLayer2 ]); 
 
