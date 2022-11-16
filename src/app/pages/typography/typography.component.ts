@@ -511,6 +511,7 @@ export class TypographyComponent implements AfterViewInit, OnInit {
     this.hospitalBool = false;
     this.circleDrawn = false; 
     this.durationSum = 0; 
+    this.distanceSum = 0;
   
 
     
