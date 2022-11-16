@@ -29,6 +29,8 @@ export class TypographyComponent implements AfterViewInit {
   markers: L.Marker[] = [];
   layers: L.Layer[] = [];
 
+  calculationResult = []; 
+
   duration = [];
   myMarkers = [];
   private geojsonLayer;
@@ -47,6 +49,8 @@ export class TypographyComponent implements AfterViewInit {
   distance = [];
   shapeLayer2: any;
   shapeLayer3: L.GeoJSON<any>;
+  durationSum = 0;
+  distanceSum = 0;
 
 
 
@@ -362,6 +366,10 @@ export class TypographyComponent implements AfterViewInit {
   }
 
   clearLayerOnDrag() {
+
+    this.durationSum = 0;
+    this.distanceSum = 0; 
+  
     for (var i = 0; i < this.layers.length; i++) {
       console.log(this.layers[i]);
       this.map.removeLayer(this.layers[i]);
@@ -382,6 +390,7 @@ export class TypographyComponent implements AfterViewInit {
   
     this.markerCounter = 1;
     this.hospitalBool = false;
+  
 
     
 
@@ -469,17 +478,40 @@ export class TypographyComponent implements AfterViewInit {
 
     }
     this.delay(4000);
+
+
   }
 
   async delay(ms: number) {
     await new Promise<void>(resolve => setTimeout(() => resolve(), ms)).then(() => {
-
+        
       for (var i = 0; i < this.duration.length; i++) {
         //ignore hospital
         this.myMarkers[i + 1].duration = this.duration[i] ;
         this.myMarkers[i + 1].distance = ( this.distance[i] / 1000 ) + ' km';
+
+        this.durationSum = this.durationSum + this.duration[i];
+
+        this.distanceSum = this.distanceSum + this.distance[i];
+      
+        
         
       }
+
+      /*const dur = this.durationSum;
+      const dist = this.distanceSum;
+
+      alert(dur + " " + dist); 
+      var calc = {
+        dur  : dur,
+        dist : dist
+      }
+
+      this.durationSum = 0; 
+      this.distanceSum = 0; 
+
+      this.calculationResult.push(calc)
+      console.log(this.calculationResult); */
     });
   }
 
