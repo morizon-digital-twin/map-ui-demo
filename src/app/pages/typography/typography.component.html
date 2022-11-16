@@ -7,7 +7,7 @@
        
         
       </div>
-      <div class="card-body">
+     <!-- <div class="card-body" style="height: 400px; ">-->
        
 
         <div>
@@ -18,12 +18,36 @@
         </div> 
 
       </div>
+      <div [hidden]="!circleDrawn" class="chart-container2" >
+      <!--<div class="card-header " style="margin-left: 550px; ">-->
+        <div style="margin-left: 550px;">
+        <h5 class="title">Zeitz </h5>
+        <p class="category"> Umkreis 2000m</p>
+
+      </div>
+       <!--<p class="card-category">
+          Bevölkerung in 2000m Umkreis 
+        </p> -->
+     <!--</div>
+      <div class="card-body " >-->
+
+
+
+
+        <div  style="height: 300px; width: 400px;" >
+      <canvas style="height: 50; width: 100; margin-left: 550px; " id="chartEmail"></canvas>
+      </div>
+    
+
+    
+
+      </div>
 
         <div class="info-div"> 
 
           
 
-        <!-- <button *ngIf="hospitalBool" (click) = "drawCircle()"> Umkreissuche </button>--> 
+         <button *ngIf="hospitalBool" (click) = "drawCircle()"> Umkreissuche </button>
          
           <button *ngIf="hospitalBool" style="margin-left:10px;"  (click) = "calculateRoute(); "> Berechne Routen </button>
           <button *ngIf="hospitalBool" style="margin-left:10px;" (click) = "clearMarkers(); "> Lösche alle Marker </button> 
@@ -56,4 +80,4 @@
     </div>
     
   </div>
-</div>
+

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, AfterViewIni
 
 import * as ortsteile from "../../../assets/shapedata/OrtsteileZeitz.json";
 
-
+import Chart from 'chart.js';
 
 
 import * as L from 'leaflet';
@@ -12,6 +12,7 @@ import * as gemeinden from "../../../assets/shapedata/Einheitsgemeinden.json";
 import { data, each } from 'jquery';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { waitForAsync } from '@angular/core/testing';
+import { bottom } from '@popperjs/core';
 
 
 
@@ -24,10 +25,16 @@ import { waitForAsync } from '@angular/core/testing';
   styleUrls: ['./typography.component.scss']
 })
 
-export class TypographyComponent implements AfterViewInit {
+export class TypographyComponent implements AfterViewInit, OnInit {
   private map;
   markers: L.Marker[] = [];
   layers: L.Layer[] = [];
+  public canvas : any;
+  public ctx;
+  selectedDistrict1; 
+  public chartColor;
+  public chartEmail;
+  public chartHours;
 
   calculationResult = []; 
 
@@ -51,6 +58,8 @@ export class TypographyComponent implements AfterViewInit {
   shapeLayer3: L.GeoJSON<any>;
   durationSum = 0;
   distanceSum = 0;
+  circleDrawn: boolean = false;
+  zeitzPop2000: { einwohner: number; u25: { m: number; w: number; }; b25_45: { m: number; w: number; }; b45_65: { m: number; w: number; }; u65: { m: number; w: number; }; };
 
 
 
@@ -78,6 +87,115 @@ export class TypographyComponent implements AfterViewInit {
     };
   }
 
+  ngOnInit() {
+
+
+    this.zeitzPop2000 = {
+    
+      einwohner: 14891,
+      u25: {
+        m: 1430,
+        w: 1314,
+      },
+  
+      b25_45: {
+        m: 1211,
+        w: 1326,
+  
+      },
+      b45_65: {
+        m: 2582,
+        w: 2546,
+  
+      },
+      u65: {
+        m: 1785,
+        w: 2697,
+      }
+    };
+
+    this.canvas = document.getElementById("chartEmail");
+    this.canvas.style.width = 40;
+    this.canvas.style.height = 100;
+
+
+   
+     this.ctx = this.canvas.getContext("2d");
+      this.chartEmail = new Chart(this.ctx, {
+        type: 'pie',
+        data: {
+          labels: ['U25 M', 'U25 W', '25-45 M', '25-45 W', '45-65 M', '45-65 W','65+ M', '65+ W'],
+          datasets: [{
+            label: "Alterstruktur",
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            backgroundColor: [
+              '#e3e3e3',
+              '#4acccd',
+              '#fcc468',
+              '#ef8157',
+              '#76b5c5',
+              '#873e23',
+              '#063970',
+              '#e28743'
+            ],
+            borderWidth: 0,
+            data: [this.zeitzPop2000.u25.m,this.zeitzPop2000.u25.w, this.zeitzPop2000.b25_45.m,this.zeitzPop2000.b25_45.w, this.zeitzPop2000.b45_65.m,this.zeitzPop2000.b45_65.w, this.zeitzPop2000.u65.m,this.zeitzPop2000.u65.w,]
+          }]
+        },
+
+       
+
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          legend: {
+            display: true,
+            position: 'right'
+          },
+          
+
+          pieceLabel: {
+            render: 'percentage',
+            fontColor: ['white'],
+            precision: 2
+          },
+
+          tooltips: {
+            enabled: true
+          },
+
+          scales: {
+            yAxes: [{
+
+              ticks: {
+                display: false
+              },
+              gridLines: {
+                drawBorder: false,
+                zeroLineColor: "transparent",
+                color: 'rgba(255,255,255,0.05)'
+              }
+
+            }],
+
+            xAxes: [{
+              barPercentage: 1.6,
+              gridLines: {
+                drawBorder: false,
+                color: 'rgba(255,255,255,0.1)',
+                zeroLineColor: "transparent"
+              },
+              ticks: {
+                display: false,
+              }
+            }]
+          },
+        }
+      }); 
+  }
+
 
   drawCircle() {
 
@@ -87,7 +205,8 @@ export class TypographyComponent implements AfterViewInit {
       var lat = this.markers[0].getLatLng().lat;
       var lng = this.markers[0].getLatLng().lng;
 
-      this.circle = L.circle([lat, lng], 5000).addTo(this.map);
+      this.circle = L.circle([lat, lng], 2000).addTo(this.map);
+      this.circleDrawn = true; 
 
     }
 
@@ -390,6 +509,8 @@ export class TypographyComponent implements AfterViewInit {
   
     this.markerCounter = 1;
     this.hospitalBool = false;
+    this.circleDrawn = false; 
+    this.durationSum = 0; 
   
 
     
@@ -409,7 +530,8 @@ export class TypographyComponent implements AfterViewInit {
 
     
 
-    //this.map.removeLayer(this.circle);
+    this.map.removeLayer(this.circle);
+    
 
 
   
@@ -518,6 +640,13 @@ export class TypographyComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initMap();
+
+
+    //sample of 2000m Filter by Hand:
+
+
+
+    
 
 
     var jsonString = JSON.stringify(zeitz);
