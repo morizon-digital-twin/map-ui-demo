@@ -2,15 +2,12 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="title">Ärztehaus</h5>
-        <p class="category"> Beispielszenario </p>
+        <h5 class="title">Willkommen im digitalen Gesundheitszwilling</h5>
+        <p class="category"> Was möchten Sie heute tun? </p>
        
-        
-      </div>
-     <!-- <div class="card-body" style="height: 400px; ">-->
-       
-
-        <div>
+        <button> Analyse Gemeinden </button>
+        <button> Platzierung gesundheitlicher Infrastruktur </button>
+        <button> Import facheigener Daten</button>
       <div class="map-container2">
           <div class="map-frame">
             <div id="map"></div>
@@ -22,7 +19,7 @@
       <!--<div class="card-header " style="margin-left: 550px; ">-->
         <div style="margin-left: 550px;">
         <h5 class="title">Zeitz </h5>
-        <p class="category"> Umkreis 2000m</p>
+        <p class="category"> Anzahl Personen im Umkreis von 2000m: 14891 </p>
 
       </div>
        <!--<p class="card-category">
@@ -49,7 +46,8 @@
 
          <button *ngIf="hospitalBool" (click) = "drawCircle()"> Umkreissuche </button>
          
-          <button *ngIf="hospitalBool" style="margin-left:10px;"  (click) = "calculateRoute(); "> Berechne Routen </button>
+          <button *ngIf="hospitalBool" style="margin-left:10px;"  (click) = "calculateRoute(); "> Berechne PKW Routen </button>
+          <button *ngIf="hospitalBool" style="margin-left:10px;"  (click) = "calculateRoute(); "> Berechne ÖPNV Routen </button>
           <button *ngIf="hospitalBool" style="margin-left:10px;" (click) = "clearMarkers(); "> Lösche alle Marker </button> 
           <button *ngIf="hospitalBool" style="margin-left:10px;" (click) = "clearLayerOnDrag(); "> Lösche Routen </button> 
   

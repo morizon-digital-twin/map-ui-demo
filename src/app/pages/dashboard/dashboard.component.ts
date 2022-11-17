@@ -30,6 +30,12 @@ export class DashboardComponent implements OnInit{
     { id: 6, name: "Zeitz" }
   ];
 
+  listOptions2 = [
+    { id: 0, name: "2025" },
+    { id: 1, name: "2030" },
+    { id: 2, name: "2035" }
+  ];
+
   zeitz = {
     einwohner: 22564,
     u25: {
@@ -400,7 +406,10 @@ zangenberg = {
       var speedCanvas = document.getElementById("speedChart");
 
       var dataFirst = {
-        data: [this.zeitz.u25.w, this.zeitz.b25_45.w, this.zeitz.b45_65.w, this.zeitz.u65.w],
+        data: [ this.geussnitz.u25.w  + this.kayna.u25.w +  this.luckenau.u25.w + this.nonnewitz.u25.w +  this.theissen.u25.w + this.wuerchwitz.u25.w +this.zangenberg.u25.w +this.zeitz.u25.w,
+          this.geussnitz.b25_45.w + this.kayna.b25_45.w + this.luckenau.b25_45.w + this.nonnewitz.b25_45.w +  this.theissen.b25_45.w + this.wuerchwitz.b25_45.w +this.zangenberg.b25_45.w +this.zeitz.b25_45.w,
+          this.geussnitz.b45_65.w + this.kayna.b45_65.w + this.luckenau.b45_65.w + this.nonnewitz.b45_65.w +  this.theissen.b45_65.w + this.wuerchwitz.b45_65.w +this.zangenberg.b45_65.w +this.zeitz.b45_65.w,
+          this.geussnitz.u65.w + this.kayna.u65.w + this.luckenau.u65.w + this.nonnewitz.u65.w +  this.theissen.u65.w + this.wuerchwitz.u65.w +this.zangenberg.u65.w +this.zeitz.u65.w],
         fill: false,
         borderColor: '#fbc658',
         backgroundColor: 'transparent',
@@ -411,7 +420,11 @@ zangenberg = {
       };
 
       var dataSecond = {
-        data: [this.zeitz.u25.m, this.zeitz.b25_45.m, this.zeitz.b45_65.m, this.zeitz.u65.m],
+        data: [this.geussnitz.u25.m  + this.kayna.u25.m +  this.luckenau.u25.m + this.nonnewitz.u25.m +  this.theissen.u25.m + this.wuerchwitz.u25.m +this.zangenberg.u25.m +this.zeitz.u25.m,
+          this.geussnitz.b25_45.m + this.kayna.b25_45.m + this.luckenau.b25_45.m + this.nonnewitz.b25_45.m +  this.theissen.b25_45.m + this.wuerchwitz.b25_45.m +this.zangenberg.b25_45.m +this.zeitz.b25_45.m,
+          this.geussnitz.b45_65.m + this.kayna.b45_65.m + this.luckenau.b45_65.m + this.nonnewitz.b45_65.m +  this.theissen.b45_65.m + this.wuerchwitz.b45_65.m +this.zangenberg.b45_65.w +this.zeitz.b45_65.m,
+          this.geussnitz.u65.m + this.kayna.u65.m + this.luckenau.u65.m + this.nonnewitz.u65.m +  this.theissen.u65.m + this.wuerchwitz.u65.m +this.zangenberg.u65.m +this.zeitz.u65.m
+        ],
         fill: false,
         borderColor: '#51CACF',
         backgroundColor: 'transparent',

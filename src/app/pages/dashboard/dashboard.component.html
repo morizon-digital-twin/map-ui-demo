@@ -110,7 +110,7 @@
     <div class="card ">
       <div class="card-header ">
         <h5 class="card-title">Bevölkerungsstruktur</h5>
-        <p class="card-category"> Burgenlandkreis</p>
+        <p class="card-category">Gemeinde Zeitz nach Ortsteilen</p>
         <div class="legend">
           <i class="fa fa-circle" style="color:#6bd098;"> </i> Unter 25 Jahre
           <i class="fa fa-circle" style="color:#f17e5d;"></i> Zwischen 25 und 45 Jahre
@@ -125,6 +125,10 @@
         <hr>
         <div class="stats">
           <i class="fa fa-history"></i> Updated 3 minutes ago
+          <button> Prognose </button>
+          <select (ngModelChange)="selectChange($event)" [(ngModel)]=listOptions2 >
+            <option *ngFor="let oneOption of listOptions2" [ngValue]="oneOption.id">{{oneOption.name}}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -134,12 +138,12 @@
   <div class="col-md-4">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Altersgruppen Zeitz</h5>
+        <h5 class="card-title">Altersgruppen Zeitz nach Ortsteil</h5>
         <p class="card-category"> 
 
-        <!--<select (ngModelChange)="selectChange($event)" [(ngModel)]=listOptions >
+       <select (ngModelChange)="selectChange($event)" [(ngModel)]=listOptions >
             <option *ngFor="let oneOption of listOptions" [ngValue]="oneOption.id">{{oneOption.name}}</option>
-          </select>-->
+          </select>
         </p>
       </div>
       <div class="card-body ">
@@ -150,7 +154,10 @@
         <canvas id="chartEmail"></canvas>
       </div>
       <div class="card-footer ">
-    
+        <button> Prognose </button>
+        <select (ngModelChange)="selectChange($event)" [(ngModel)]=listOptions2 >
+          <option *ngFor="let oneOption of listOptions2" [ngValue]="oneOption.id">{{oneOption.name}}</option>
+        </select>
         <hr>
         <div class="stats">
          
@@ -161,7 +168,7 @@
   <div class="col-md-8">
     <div class="card card-chart">
       <div class="card-header">
-        <h5 class="card-title">Zeitz</h5>
+        <h5 class="card-title">Gemeinde Zeitz</h5>
         <p class="card-category"> Altersstruktur nach Geschlecht</p>
       </div>
       <div class="card-body">
@@ -172,6 +179,10 @@
           <i class="fa fa-circle text-info"></i> männlich
           <i class="fa fa-circle text-warning"></i> weiblich
         </div>
+        <button> Prognose </button>
+        <select (ngModelChange)="selectChange($event)" [(ngModel)]=listOptions2 >
+          <option *ngFor="let oneOption of listOptions2" [ngValue]="oneOption.id">{{oneOption.name}}</option>
+        </select>
         <hr/>
         <div class="card-stats">
          
